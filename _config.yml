@@ -12,3 +12,6 @@ author:
 # Markdown and highlighter settings
 markdown: kramdown
 highlighter: rouge
+
+# Theme
+theme: minimal
