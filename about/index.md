@@ -24,6 +24,3 @@ _(Replace the path above with your actual image path or URL)_
 ## LinkedIn
 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/yourprofile).
 
----
-
-## [Home](/) | [About Me](/about/) | [Projects](/projects/) | [Contact](/contact/)

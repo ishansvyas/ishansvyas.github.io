@@ -1,0 +1,14 @@
+title: My Personal Site
+description: >- 
+  Welcome to my personal website where I showcase my projects, interests, and more.
+baseurl: "" # For personal sites, leave this blank
+url: "https://ishansvyas.github.io" # Your site's URL
+
+# Optional: Information about you or the site
+author: 
+  name: "Ishan Vyas"
+  email: "Ishan [dot] Vyas [at] Duke [dot] edu"
+
+# Markdown and highlighter settings
+markdown: kramdown
+highlighter: rouge
