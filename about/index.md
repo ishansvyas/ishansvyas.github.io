@@ -1,6 +1,6 @@
 # My Personal Site
 
-## [Home](/) | [About Me](/about/) | [Projects](/projects/) | [Contact](/contact/)
+## [Home](/) | [Projects](/projects/) | [Resume](/resume/) | [About](/about/)
 
 ---
 
