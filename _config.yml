@@ -1,6 +1,6 @@
-title: My Personal Site
+title: Ishan Vyas
 description: >- 
-  Welcome to my personal website where I showcase my projects, interests, and more.
+  I do stuff and then document it here. 
 baseurl: "" # For personal sites, leave this blank
 url: "https://ishansvyas.github.io" # Your site's URL
 
@@ -15,3 +15,15 @@ highlighter: rouge
 
 # Theme (doesn't work)
 theme: jekyll-theme-minimal
+
+# Navigation
+navigation:
+- title: "Home"
+  url: "/"
+- title: "Projects"
+  url: "/projects/"
+- title: "Resume"
+  url: "/resume/"
+- title: "About"
+  url: "/about/"
+
