@@ -13,5 +13,5 @@ author:
 markdown: kramdown
 highlighter: rouge
 
-# Theme
-theme: minimal
+# Theme (doesn't work)
+#theme: minimal
