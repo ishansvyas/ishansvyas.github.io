@@ -14,4 +14,4 @@ markdown: kramdown
 highlighter: rouge
 
 # Theme (doesn't work)
-#theme: minimal
+theme: jekyll-theme-minimal
