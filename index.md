@@ -2,7 +2,7 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+Text can be **bold**, _italic_, or ~~strikethrough~~. Test
 
 [Home](./index.html) | [Projects](./projects/index.html) | [Resume](./resume/index.html) | [About](./about/index.html) | [Another Page](./another-page.html)
 
