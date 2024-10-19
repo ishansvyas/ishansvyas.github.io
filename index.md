@@ -4,7 +4,7 @@ layout: default
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Home](./index.html) | [Projects](./projects/index.html) | [Resume](./resume/index.html) | [About](./about/index.html) 
+[Home](./index.html) | [Projects](./projects/index.html) | [Resume](./resume/index.html) | [About](./about/index.html) | [Another Page](./another-page.html)
 
 There should be whitespace between paragraphs.
 
