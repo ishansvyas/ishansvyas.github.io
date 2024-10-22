@@ -2,20 +2,7 @@
 
 
 ## Verilog Pipelined CPU
+A 5-staged, pipelined, bypassing CPU that runs MIPS ISA. The CPU runs at >50 MHz and is written nearly completely in Structural Verilog. [Read more ->](./verilog_cpu/index.md)
 
 ## Ancestry Estimation
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+Have you ever wondered where you're from? Are Ancestry.com tests too expensive, and BuzzFeed quizzes a bit too unscientific? Check out this Ancestry estimate I created, analyzing Y-DNA and mtDNA data. [Read more ->](./ancestry/index.md)
