@@ -1,1 +1,1 @@
-[Home](./index.html) | [Projects](./../../projects/index.html) | [Resume](./../../resume/index.html) | [About](./../../about/index.html)  
+[Home](./index.md) | [Projects](./../projects/index.md) | [Resume](./../resume/index.md) | [About](./../about/index.md)  
