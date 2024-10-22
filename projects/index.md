@@ -1,8 +1,9 @@
 [Home](./../index.md) | [Projects](./../projects/index.md) | [Resume](./../resume/index.md) | [About](./../about/index.md) 
 
 
+## Verilog Pipelined CPU
 
-### Header 3
+## Ancestry Estimation
 
 ```js
 // Javascript code with syntax highlighting.
