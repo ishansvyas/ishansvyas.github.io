@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Maanav Allampallam, Ishan Vyas" />
+  <title> Electromagnetically Induced Transparency Cooling ECE 522: Quantum Engineering with Atoms </title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"> Electromagnetically Induced Transparency
+Cooling<br />
+ECE 522: Quantum Engineering with Atoms </h1>
+<p class="author">Maanav Allampallam, Ishan Vyas</p>
+<p class="date">April 2025</p>
+</header>
+<h1 id="introduction">Introduction</h1>
+<p>Atomic cooling is a foundational concept in quantum information
+science and a necessary capability for any system that traps neutral
+atoms or ions. Cooling atoms increases the efficiency of the traps, as
+it reduces the probability of the particle jumping out of the trap
+(especially necessary for shallow traps like Paul or Penning traps).
+Cooling also reduces thermal noise, which increases coherence times and
+qubit stability.</p>
+<h1 id="doppler-cooling">Doppler Cooling</h1>
+<p>Doppler cooling was the first cooling technique which could get close
+to the temperatures required for atom/ion trapping systems. The basic
+idea is to use a laser to impart a momentum kick on the atom moving in a
+direction to reduce its momentum in that direction, thereby reducing its
+overall kinetic energy<span class="citation"
+data-cites="RevModPhys"></span>. To ensure the momentum kick only
+happens in that direction, the laser is red-detuned from the resonant
+frequency. When the atom moves in the direction opposite to the laser
+propagation, the Doppler shift raises the frequency to resonance,
+allowing for photon absorption. However, the absorbed photon is
+eventually emitted. While this emission is isotropic <span
+class="citation" data-cites="RevModPhys"></span>, meaning there is no
+momentum change, it does add kinetic energy to the atom. Hence, there is
+an equilibrium between the cooling from the absorption and heating from
+the emission. The temperature at this equilibrium is the coldest Doppler
+cooling can make a system. Below is a brief derivation based on <span
+class="citation" data-cites="RevModPhys"></span> of this lower limit, as
+Doppler cooling is not the primary focus of this report.<br />
+<br />
+We define the cooling force on the laser as <span
+class="math display">\[F_c = \hbar k \Gamma \rho _{\pm}\]</span> where
+<span class="math inline">\(\hbar k\)</span> is the momentum of the
+absorbed photon and the <span class="math inline">\(\Gamma \rho
+_{\pm}\)</span> is the scattering rate. <span class="math inline">\(\rho
+_{\pm}\)</span> is the excited state population and can be derived from
+solving the Optical Bloch equations. <span class="math display">\[\rho
+_{\pm}= \frac{I/I_{sat}}{2(1 + I_{sat}+ 4\frac{(\delta \mp
+kv)^2}{\Gamma^2})}\]</span> The <span class="math inline">\(\pm\)</span>
+is positive if the atom is traveling against the laser, and negative if
+it is traveling with the laser.<br />
+<br />
+We define the energy added through emission as <span
+class="math display">\[E_e = \frac{(\hbar k)^2}{2m}\]</span>This is
+simply the kinetic energy of the photon.<br />
+<br />
+Now consider a 1D system with lasers shining to the right and left and a
+two-level atom moving to the right. Below are the net cooling force, net
+cooling rate <span class="math inline">\(R_c\)</span>, and net heating
+rate <span class="math inline">\(R_H\)</span>. <span
+class="math display">\[\sum F_c = \hbar k \Gamma (\rho _+ - \rho
+_-)\]</span> <span class="math display">\[R_c = (\sum F_c )v\]</span>
+<span class="math display">\[R_H = \frac{(\hbar k)^2}{2m} \Gamma ((\rho
+_+ - \rho _-)\]</span> By setting <span class="math inline">\(R_c =
+R_H\)</span>, applying the equipartition theorem <span
+class="math inline">\(\frac{1}{2}mv^2 = \frac{1}{2}k_BT^2\)</span>, and
+doing some algebra, you get the following as the Doppler limit. <span
+class="math display">\[T_D = \frac{\hbar \Gamma}{2k_B}\]</span><br />
+<br />
+In practice, this temperature is usually around a few hundred
+microkelvin. While this is very cold, quantum computing gates require
+coherence times for which even a few hundred microkelvin is too high. To
+bypass this limit, we use EIT cooling.</p>
+<h1 id="theory-of-eit-cooling">Theory of EIT Cooling</h1>
+<h2 id="eit-principles-and-setup">EIT Principles and Setup</h2>
+<p>Multi-level atomic systems demonstrate transparency when specific
+wavelengths of lasers are applied. This transparency effect relies on
+quantum interference to function, using the interference to prevent
+transitions into an excited state. As a result, electrons become
+‘transparent’ to light, as the interference prevents absorption. This
+transparency effect is the foundation that allows EIT cooling to
+work.<br />
+<br />
+The system setup is as follows. EIT relies on the existence of a <span
+class="math inline">\(\Lambda\)</span> 3-state configuration, where
+there exists two stable or metastable states <span
+class="math inline">\(\ket{f}\)</span> and <span
+class="math inline">\(\ket{g}\)</span> and an excited state <span
+class="math inline">\(\ket{e}\)</span>. An example of this configuration
+is in <span class="math inline">\({}^{40}Ca^{+}\)</span>, where two
+<span class="math inline">\(S_{1/2}\)</span> Zeeman sublevels comprise
+the stable states <span class="math inline">\(\ket{f}\)</span> and <span
+class="math inline">\(\ket{g}\)</span> and one of the <span
+class="math inline">\(P_{1/2}\)</span> Zeeman sublevels represents the
+excited state <span class="citation"
+data-cites="RoosExperimental"></span>.<br />
+<br />
+Figure <a href="#fig:Lambda-system" data-reference-type="ref"
+data-reference="fig:Lambda-system">1</a> demonstrates a typical
+configuration, complete with laser/state detuning <span
+class="math inline">\(\Delta_n\)</span> and slight probe/control
+detuning <span class="math inline">\(\delta\)</span> <span
+class="citation" data-cites="FinkelsteinEIT"></span>. In the figure,
+<span class="math inline">\(\gamma_{31}\)</span> and <span
+class="math inline">\(\gamma_{32}\)</span> represent the rate of
+spontaneous emission from state i to state j.</p>
+<figure id="fig:Lambda-system">
+<img src="njpacbc40f2_hr.jpg" style="width:50.0%" />
+<figcaption> Finkelstein et al, 2023. a) A typical 3-level <span
+class="math inline">\(\Lambda\)</span> system is shown, with probe laser
+<span class="math inline">\(\Omega_p\)</span> and control laser <span
+class="math inline">\(\Omega_c\)</span> shown. b) Demonstration of
+transparency effect for select wavelength and detunings. </figcaption>
+</figure>
+<h2 id="dressed-states">Dressed States</h2>
+<p>The application of a strong controlled laser creates a phenomenon
+called ‘dressed states’. Dressed states are a result of the
+Autler-Townes Effect, also known as the AC Stark Effect. When the strong
+coupling laser is turned on, the atom-light interaction between the
+laser and the <span class="math inline">\(\ket{g}\)</span> and <span
+class="math inline">\(\ket{e}\)</span> states changes the eigenstates of
+the Hamiltonian <span class="citation"
+data-cites="AnisimovATSvsEIT"></span>. Without covering the mechanisms
+by which this state shift occurs, we get that the states shift away from
+each other by an amount <span class="math inline">\(\delta t\)</span>,
+where the ‘ground’ state rises and the excited state lowers. Figure <a
+href="#fig:lechner_dress" data-reference-type="ref"
+data-reference="fig:lechner_dress">2</a> illustrates the state dressing
+in a 3-level system <span class="citation"
+data-cites="LechnerEITCooling"></span>. The resulting state shift is
+calculated as: <span class="math display">\[\delta t =
+\frac{1}{2}(\sqrt{{\Omega}_c^2 + {\Delta}_c^2} -
+|\Delta_c|)\]</span><br />
+<br />
+These new shifted states are represented by <span
+class="math inline">\(\ket{\Tilde{g}}\)</span> and <span
+class="math inline">\(\ket{\Tilde{e}}\)</span>. Though we will discuss
+motional sidebands later, it should be noted that the dressed <span
+class="math inline">\(\ket{\Tilde{g}, n-1}\)</span> state will almost
+exclusively decay into the <span class="math inline">\(\ket{f,
+n-1}\)</span> state, so long as the system is within or near the
+Lamb-Dicke regime <span class="citation" data-cites="MorigiGS"></span>.
+This condition can be proved by examining the expansion of the recoil
+operator: <span class="math display">\[e^{i \eta (a + a^\dagger)}
+\approx 1 + i \eta (a + a^\dagger) + \mathcal{O}(\eta^2)\]</span><br />
+In this case, for <span class="math inline">\(\eta &lt;&lt; 1\)</span>,
+the coefficients of the raising/lowering operators are about 0, meaning
+the chance of emission changing the motional state of the electron is
+near 0.<br />
+<br />
+Viewing the equation for the state dressing <span
+class="math inline">\(\delta t\)</span>, we can see that tuning the Rabi
+frequency and detuning of the control laser gives precise control over
+the energy eigenstates. This precise state control enables
+electromagnetically induced transparency to occur by placing the excited
+state in the dark spot of the Fano-type profile, explained in the
+sections below.</p>
+<figure id="fig:lechner_dress">
+<img src="lechner.jpg" style="width:50.0%" />
+<figcaption>Lechner et al, 2016. Dressed states in a 3-level <span
+class="math inline">\(\Lambda\)</span> system</figcaption>
+</figure>
+<h2 id="dark-states">Dark States</h2>
+<p>So far, we have strictly considered the implementation of the
+coupling laser (<span class="math inline">\(\omega_c\)</span>, <span
+class="math inline">\(\Omega_c\)</span>) between the stable state <span
+class="math inline">\(\ket{g}\)</span> and the excited state <span
+class="math inline">\(\ket{e}\)</span>. Let’s now include a weaker probe
+laser with natural frequency <span
+class="math inline">\(\omega_p\)</span> and Rabi frequency <span
+class="math inline">\(\Omega_p\)</span>, set between the metastable
+state <span class="math inline">\(\ket{f}\)</span> and the excited state
+<span class="math inline">\(\ket{e}\)</span>. As derived in Lambropoulos
+and Petrosyan <span class="citation"
+data-cites="Lambropoulos2007"></span>, for this example, we will not
+include any detuning. We want to analyze the effect of the interaction
+between the atom and the incoming lasers. The Hamiltonian of the system
+is straightforward: <span class="math display">\[H_0 = \hbar \omega_g
+\ket{g}\bra{g} + \hbar \omega_f \ket{f}\bra{f} + \hbar \omega_e
+\ket{e}\bra{e}\]</span> The atom-light interaction Hamiltonian is a
+separate topic of discussion, and is derivable via the rotating wave
+approximation; it is equal to: <span class="math display">\[H&#39;(t) =
+-\frac{\hbar}{2}[\Omega_c e^{-i\omega_ct}\ket{e}\bra{g} + \Omega_p
+e^{-i\omega_pt}\ket{e}\bra{f}] + h.c.\]</span> We set up the
+time-dependent Schrödinger equation, giving: <span
+class="math display">\[i\hbar \frac{\partial}{\partial t}\ket{\Psi(t)} =
+[\hat{H_0}+\hat{H&#39;}(t)]\ket{\Psi(t)}\]</span> <span
+class="math display">\[\ket{\Psi(t)}=c_g(t)\ket{g} + c_f(t)\ket{f} +
+c_e(t)\ket{e}\]</span><br />
+<br />
+Using time-dependent perturbation theory, we can arrive at equations
+that describe the time evolution of the states. Those equations are:
+<span class="math display">\[c_g(t) = c_g(0) \left[
+\frac{\Omega_c^2}{\Omega^2} + \frac{\Omega_p^2}{\Omega^2} \cos\left(
+\frac{\Omega t}{2} \right) \right]
++ c_f(0) \left[ -\frac{\Omega_p \Omega_c}{\Omega^2} + \frac{\Omega_p
+\Omega_c}{\Omega^2} \cos\left( \frac{\Omega t}{2} \right) \right]
+- i c_e(0) \frac{\Omega_p}{\Omega} \sin\left( \frac{\Omega t}{2}
+\right)\]</span></p>
+<p><span class="math display">\[c_f(t) = c_g(0) \left[ -\frac{\Omega_p
+\Omega_c}{\Omega^2} + \frac{\Omega_p \Omega_c}{\Omega^2} \cos\left(
+\frac{\Omega t}{2} \right) \right]
++ c_f(0) \left[ \frac{\Omega_p^2}{\Omega^2} +
+\frac{\Omega_c^2}{\Omega^2} \cos\left( \frac{\Omega t}{2} \right)
+\right]
+- i c_e(0) \frac{\Omega_c}{\Omega} \sin\left( \frac{\Omega t}{2}
+\right)\]</span></p>
+<p><span class="math display">\[c_e(t) = -i c_g(0)
+\frac{\Omega_p}{\Omega} \sin\left( \frac{\Omega t}{2} \right)
+- i c_f(0) \frac{\Omega_c}{\Omega} \sin\left( \frac{\Omega t}{2} \right)
++ c_e(0) \cos\left( \frac{\Omega t}{2} \right)\]</span><br />
+noting that <span class="math inline">\(\Omega = \sqrt{\Omega_p^2 +
+\Omega_c^2}\)</span>. More important than the time evolutions themselves
+is the fact that we can choose a starting state of: <span
+class="math display">\[\ket{D} = \cos(\theta)\ket{f} -
+\sin(\theta)\ket{g}\]</span> of which <span
+class="math inline">\(\tan(\theta) = \frac{\Omega_p}{\Omega_c}\)</span>,
+where the time evolution into the third state, <span
+class="math inline">\(c_e(t)\)</span>, is always equal to 0. This occurs
+because the <span class="math inline">\(c_f(0)\)</span> and <span
+class="math inline">\(c_g(0)\)</span> terms become out of phase by <span
+class="math inline">\(\pi\)</span> and cancel out. Physically, this
+effect is called quantum interference, where the excitation of the <span
+class="math inline">\(\ket{g}\)</span> and <span
+class="math inline">\(\ket{f}\)</span> states interfere with each other
+and prevent either excitation. In other words, once the electron reaches
+the dark state, it cannot evolve into the excited state. The electron
+becomes ‘transparent’, where the light passes through without
+interacting with the electron. For this reason, we call <span
+class="math inline">\(\ket{D}\)</span> the dark state.<br />
+<br />
+A tangential argument can be made for the state <span
+class="math inline">\(\ket{B}\)</span>, defined as the orthogonal state
+to <span class="math inline">\(\ket{D}\)</span>. For the dark state
+above, we can find: <span class="math display">\[\ket{B} =
+\sin(\theta)\ket{f} + \cos(\theta)\ket{g}\]</span> In the state <span
+class="math inline">\(\ket{B}\)</span>, transition into the excited
+state is at a maximum; as a result, this state is called the ‘bright’
+state.</p>
+<h2 id="fano-profile">Fano Profile</h2>
+<p>We return to our 3-level <span class="math inline">\(\Lambda\)</span>
+system with dressed states and probe and control laser detunings. A
+result of electromagnetically induced transparency is the existence of a
+Fano profile, shown in the top right of Figure <a
+href="#fig:lechner_fano" data-reference-type="ref"
+data-reference="fig:lechner_fano">3</a>. A Fano profile measures the
+absorbance of a particular state for various laser detunings, and it is
+characterized by a thin band of near-zero absorbance. This region of
+minimal absorbance corresponds to the dark state discussed above; a
+similar maximum absorbance corresponding to the bright state is slightly
+further detuned from the dark state.<br />
+<br />
+For EIT cooling, our goal is to engineer the system such that the
+excited state is in this narrow region of minimal absorbance and for the
+lower motional sideband of the excited state, represented by <span
+class="math inline">\(\ket{e, n-1}\)</span>, to be in the bright state.
+In this case, we would have maximum absorbance into the lower motional
+sideband, and due to our system being in the Lamb-Dicke regime, we would
+reach a lower motional ground state. That setup is shown in Figure <a
+href="#fig:lechner_fano" data-reference-type="ref"
+data-reference="fig:lechner_fano">3</a>, where the red dashed line
+corresponds to the lower motional sideband, and the blue dashed line
+corresponds to the higher sideband <span class="citation"
+data-cites="LechnerEITCooling"></span>.</p>
+<figure id="fig:lechner_fano">
+<img src="lechner_fano.jpg" style="width:50.0%" />
+<figcaption>Lechner et al, 2016. Fano-type profile across variable
+detuning</figcaption>
+</figure>
+<h2 id="multi-ion-chains">Multi-Ion Chains</h2>
+<p>EIT Cooling is particularly useful for cooling multi-ion chains;
+ignoring the lasers needed to set up the <span
+class="math inline">\(\Lambda\)</span> configuration, just two lasers
+are needed to cool any N chain of ions. The reason for why this is true
+relies on our picture of the Fano profile in Figure <a
+href="#fig:lechner_fano" data-reference-type="ref"
+data-reference="fig:lechner_fano">3</a>. For cooling to work, we need
+two conditions to be true. First, the red sideband needs to exist
+somewhere along the enhanced section, close to but not necessarily
+exactly on the bright state. Second, the excited state of the same
+motional sideband must be aligned with the dark state. Given those
+conditions, we do not need to address each individual sideband
+frequency; we can instead address all sidebands at once. It is implied
+that all ions in the chain have a relatively similar motional mode at
+the start of the cooling process; if not, then our laser could not
+address ions effectively. Chains of up to 40 atoms at once have been
+cooled using EIT methods, though more are theoretically possible <span
+class="citation" data-cites="FengTripodEIT"></span>.</p>
+<h1 id="experimental-cases">Experimental Cases</h1>
+<p>The main advantage of EIT cooling is its ability to simultaneously
+cool many ions. As such, we will examine two experimental setups from
+Lechner et al. in which long chains of ions were cooled. Lechner et al.
+built two EIT cooling setups and used them to simultaneously cool the
+radial modes of 9 to 18 <span class="math inline">\(^{40}Ca^+\)</span>
+ions. Both setups used the <span class="math inline">\(S_{1/2}
+\leftrightarrow P_{1/2}\)</span> (<span
+class="math inline">\(397\)</span>nm) as the cooling transition, the
+<span class="math inline">\(D_{3/2} \leftrightarrow P_{1/2}\)</span>
+(<span class="math inline">\(866\)</span>nm) as the repump, <span
+class="math inline">\(D_{5/2} \leftrightarrow P_{3/2}\)</span> (<span
+class="math inline">\(854\)</span>nm) as the quench, and finally <span
+class="math inline">\(S_{1/2} \leftrightarrow D_{5/2}\)</span> (<span
+class="math inline">\(729\)</span>nm) as the clock frequency (used for
+sideband analysis post cooling). Figure 4b. shows a diagram of the
+energy transitions. The cooling laser was a diode laser, and the beam
+was split to create the dressing and probe beams.</p>
+<figure id="fig:Etrans">
+<img src="Etrans.png" style="width:50.0%" />
+<figcaption>Adapted from Lechner et al, 2016. a) Laser beams and cooling
+transitions b)<span class="math inline">\(^{40}Ca^+\)</span> transitions
+used in experiment</figcaption>
+</figure>
+<h2 id="setup-1">Setup 1</h2>
+<p>Setup 1 utilized a macroscopic linear RF trap. A magnetic field of
+.4mT was used to create an 11.4 MHz Zeeman splitting. Finally, the
+dressing beam was blue detuned by 106MHz.</p>
+<h2 id="setup-2">Setup 2</h2>
+<p>Setup 2 utilized a microfabricated segmented surface trap with a
+segment length of <span class="math inline">\(250\mu\)</span>m. A
+magnetic field of .33mT was used to create a 9.3MHz Zeeman splitting.
+The dressing beam was detuned by 105MHz.</p>
+<h2 id="procedure">Procedure</h2>
+<ol>
+<li><p>Doppler cool for a few milliseconds</p></li>
+<li><p>EIT cool for 1ms</p></li>
+<li><p>Analyze with sideband spectroscopy</p></li>
+</ol>
+<h2 id="results-and-shortcomings">Results and Shortcomings</h2>
+<p>Ground state cooling was achieved with less than 1ms cooling times in
+both setups for both 9 and 18 ions (18 and 36 radial modes,
+respectively). n was less than 1 by at least two orders of magnitude in
+Setup 1 and one order of magnitude less than 1 in Setup 2. The best
+cooling rates achieved by Setup 1 and 2 were 19kHz and 17kHz,
+respectively. In both setups, ground state cooling was verified by
+analyzing the sidebands. Figure 6. shows the before and after for the 9
+ion chain. Although not the goal of the experiments, there was observed
+heating of the axial modes in both setups. The authors attribute this to
+the nonzero projection of the Raman k-vector onto the axial direction
+combined with the fact that the axial modes were not in the Lamb-Dicke
+regime after Doppler cooling. This caused increased photon scattering
+leading to heating. They also mentioned polarization impurities. These
+impurities could cause unwanted transitions, break dark state coherence,
+and increase uncontrolled scattering.</p>
+<h2 id="combination-technique">Combination Technique</h2>
+<p>A fundamental shortcoming of the EIT cooling concept is that, since
+it is a fast broadband technique, it lacks the precision of other side
+band cooling techniques. However, there is nothing stopping researchers
+from combining these techniques. Feng et al. used a "tripod" EIT cooling
+scheme to quickly cool down the 36 atoms in their chain at a 3MHz
+cooling bandwidth, and then used mode-selective resolved sideband
+cooling for more precision. With this, they were able to achieve
+ground-state cooling in less than 300 <span
+class="math inline">\(\mu\)</span>s for ion chains of up to 40
+atoms.</p>
+<figure id="fig:nosidebands">
+<img src="NoSidebands.png" style="width:50.0%" />
+<figcaption>Adapted from Lechner et al, 2016. Top is after Doppler
+Cooling. Bottom is after EIT. Absense of red sidebands after EIT
+verifies ground state cooling</figcaption>
+</figure>
+<h1 id="future-outlook">Future Outlook</h1>
+<p>EIT cooling is one of the most promising cooling technologies for
+quantum computing. Its scalability and robustness make it perfect for
+quantum computing applications that require many gates. The trend in the
+literature has been towards more ions and larger cooling bandwidths, so
+it is very possible that EIT cooling becomes the universal first-stage
+cooling for quantum computers (followed by more precise methods like
+mode-selective RSB cooling). Companies like IonQ and Quantinium are
+trying to further increase the scalability by reducing the optical setup
+through on-chip EIT beam routing. Researchers at Harvard-CFA have also
+begun to utilize EIT cooling for molecules and nanoparticles, expanding
+its applications beyond the field of quantum computing. Overall, this is
+a very exciting technology with a bright future.<br />
+<br />
+</p>
+<h1 id="author-contributions">Author Contributions</h1>
+<p>Sections 1, 2, 4 and 5 of this paper were primarily researched for
+and written by Maanav Allampallam, and section 3, the bulk of EIT
+theory, was written by Ishan Vyas.</p>
+</body>
+</html>

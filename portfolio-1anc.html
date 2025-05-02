@@ -48,6 +48,8 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -97,40 +99,56 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Ancestry Estimator</h2>
-					<p>A machine learning approach to predicting genetic ancestry</p>
+					<p>Using DNA data to trace your ancestry <a href="https://github.com/ishansvyas/ancestry-estimator" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
 				</div>
 			</div>
-			
-			<div class="row">
-				<div class="col-md-12">
-					<img src="images/myown/haplogroups_ancestry.png" class="img-responsive" style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; display: block;">
-					<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;">Figure 1: Visualization of genetic haplogroups and their geographic distribution across different populations.</p>
-				</div>
-			</div>
+	
 
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
 						<h3>Project Overview</h3>
 						<p>
-							This project combined bioinformatics, genetics, and computer programming to analyze ancestral DNA and trace patterns of human migration. The goal was to develop a custom software tool that could interpret raw genetic data and map lineage-based mutations to geographic regions over time.
+							This project combined bioinformatics, genetics, and computer programming to analyze ancestral yDNA and trace patterns of human migration. 
+							The goal was to develop a custom software tool that could map raw genetic data to geographic regions over time.
+							This was the first programming project I ever did, so I learned a lot but it doesn't work very robustly. 
 						</p>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="animate-box">
+						<h3>Some Helpful Definitions</h3>
+						<p>
+							<ul>
+								<li><b>Y-DNA</b>: The DNA passed down from fathers to sons. This is the DNA that is used for the ancestry estimator.</li>
+								<li><b>mtDNA</b>: The DNA passed down from mothers to daughters. Autosomal DNA (DNA that isn't mtDNA or Y-DNA) recombines randomly in the population, so it is not useful for ancestry estimation.</li>
+								<li><b>SNPs</b>: Single Nucleotide Polymorphisms, which defines the location at which a single base pair in DNA can vary.</li>
+								<li><b>Haplogroups</b>: A group of people who share a common ancestor, and have a similar pattern of mutations in their Y-DNA.</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<img src="images/myown/haplogroups_ancestry.png" class="img-responsive" style="width: 80%; max-width: 600px; margin: 0 auto 20px auto; display: block;">
+					<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;">Figure 1: Visualization of genetic haplogroups and their geography.</p>
 				</div>
 			</div>
 
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<img src="images/myown/ancestry_visualization.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 2: Principal component analysis (PCA) plot showing genetic clustering of different population groups.</p>
-						<h3>Technical Focus</h3>
-						<p>The project was implemented in R, a statistical programming language widely used in bioinformatics. After an initial phase of learning the language and its data handling capabilities, a custom program was written in four modular stages:
+						<h3>Project Scope</h3>
+						<p>The project was implemented in R. After an initial phase of learning the language and its data handling capabilities, I wrote a program that:
 							<ul>
-								<li>Data Import: Load genetic data and population reference databases.</li>
-								<li>Data Matching: Align and merge mutation data across multiple sources.</li>
-								<li>Mutation Analysis: Identify relevant single nucleotide polymorphisms (SNPs) associated with known haplogroups.</li>
-								<li>Output Generation: Print inferred ancestral paths and likely geographic origins.</li>
+								<li>Imported genetic data and population reference databases.</li>
+								<li>Aligned and merged mutation data across multiple sources.</li>
+								<li>Identified relevant single nucleotide polymorphisms (SNPs) associated with known haplogroups.</li>
+								<li>Printed inferred ancestral paths and likely geographic origins.</li>
 							</ul>
 						</p>
 					</div>
@@ -140,8 +158,6 @@
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<img src="images/myown/ancestry_algorithm.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 3: Flowchart of the ancestry prediction algorithm showing data processing and classification steps.</p>
 						<h3>Biological Context</h3>
 						<p>The program focused on Y-DNA and mtDNA mutations, which are passed down paternally and maternally, respectively. By tracing these mutations and comparing them to published reference datasets, the software could generate rough maps of ancestral migration routes and origin points. This applied both historical population data and modern genomics to a real-world lineage analysis.
 						</p>
