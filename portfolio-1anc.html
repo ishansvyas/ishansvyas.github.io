@@ -35,6 +35,7 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
@@ -109,9 +110,10 @@
 					<div class="animate-box">
 						<h3>Project Overview</h3>
 						<p>
-							This project combined bioinformatics, genetics, and computer programming to analyze ancestral yDNA and trace patterns of human migration. 
-							The goal was to develop a custom software tool that could map raw genetic data to geographic regions over time.
-							This was the first programming project I ever did, so I learned a lot but it doesn't work very robustly. 
+							Companies like 23andMe and Ancestry.com can estimate where your lineage originates from. They do this by looking at mutations in your DNA and comparing those mutations against a database of known mutations associated with different ethnic groups from the past. Since DNA recombination is random for <i>autosomal</i> DNA, we have to use alternatives; the alternative I use is called <i>yDNA</i> and is explained below. For this project, I had to create my own database, and then write a program that checked against the database to provide accurate estimates. 
+						</p>
+						<p>
+							More specifically, I created a database of haplogroups using data from the International Society of Genetic Genealogy and the National Institute of Health. I then created an algorithm, using white papers from Ancestry.com, that (as efficiently as I could) iterates over all DNA data and mutations to find haplogroups that the individual likely matches to. I take those matches and their geographic origins to create an estimate of where in the world the individual likely originates from. 
 						</p>
 					</div>
 				</div>
@@ -119,8 +121,11 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<h3>Some Helpful Definitions</h3>
-						<p>
+						<h3>Background</h3>
+						<p>The program focused on Y-DNA and mtDNA mutations, which are passed down paternally and maternally, respectively. By tracing these mutations and comparing them to published reference datasets, the software could generate rough maps of ancestral migration routes and origin points. This applied both historical population data and modern genomics to a real-world lineage analysis.
+						</p>
+
+						<p> Some key terms:
 							<ul>
 								<li><b>Y-DNA</b>: The DNA passed down from fathers to sons. This is the DNA that is used for the ancestry estimator.</li>
 								<li><b>mtDNA</b>: The DNA passed down from mothers to daughters. Autosomal DNA (DNA that isn't mtDNA or Y-DNA) recombines randomly in the population, so it is not useful for ancestry estimation.</li>
@@ -142,37 +147,48 @@
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<h3>Project Scope</h3>
-						<p>The project was implemented in R. After an initial phase of learning the language and its data handling capabilities, I wrote a program that:
-							<ul>
-								<li>Imported genetic data and population reference databases.</li>
-								<li>Aligned and merged mutation data across multiple sources.</li>
-								<li>Identified relevant single nucleotide polymorphisms (SNPs) associated with known haplogroups.</li>
-								<li>Printed inferred ancestral paths and likely geographic origins.</li>
-							</ul>
+						<h3>Technical Information</h3>
+						<h4><b>Haplogroup Database</b></h4>
+						<p> 
+							Creating the haplogroup database was tedious. The process began by selecting a haplogroup, and consulting the ISOGG (International Society of Genetic Genealogy) tree to identify its submutations. Given the sheer size and complexity of the tree, each submutation was researched individually to determine its geographic origin. This origin data was recorded in a color-coded spreadsheet, organizing the information visually for clarity and future reference.
 						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row" style="margin-top: 20px;">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="animate-box">
-						<h3>Biological Context</h3>
-						<p>The program focused on Y-DNA and mtDNA mutations, which are passed down paternally and maternally, respectively. By tracing these mutations and comparing them to published reference datasets, the software could generate rough maps of ancestral migration routes and origin points. This applied both historical population data and modern genomics to a real-world lineage analysis.
+						<p> 
+							To enrich the dataset, each submutation's position on the Y-chromosome and its RSID (Reference SNP cluster ID) was retrieved from the Genetic Homeland tool. These RSIDs were then cross-referenced using the NCBI dbSNP database to find the reference and alternate alleles, which indicate whether a specific mutation is present in a given DNA sample. Every step involved meticulous cross-verification to ensure accuracy, especially when location data was vague or inconsistently reported. This process was essential to ensure that the final program could interpret raw genetic data correctly and assign lineage information based on validated mutation data.
 						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row" style="margin-top: 20px;">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="animate-box">
-						<h3>More Information</h3>
+						<h4><b>R Program</b></h4>
 						<p>
-							Check out my blog, written during the project, at the <a href="https://ishanvyashawkenprojects2022.blogspot.com/" target="_blank">link here</a>.
+							The R program was developed to analyze yDNA and identify haplogroups based on SNP data. It began with a manually curated Excel database of ~40 RSIDs, imported using the read_excel function from the readxl package. Individual genetic data was also loaded into a dataframe, and RSIDs were used to match user mutations to known haplogroup markers. While limited in scope, this version produced basic but accurate results.	
+						</p>
+						<p> 
+							To increase coverage, a second version automated database creation. Instead of relying solely on the manual dataset, the program scraped reference and alternate alleles for 1000+ RSIDs directly from the NCBI dbSNP database. Though time-intensive, this allowed broader analysis. The matched alleles were then compared with ISOGG haplogroup records to output likely subgroups (e.g., J2a1a2b). 
+
+						</p>
+						<p> 
+							Finally, I compare the results of the subgroups and determine a likely prediction from the subgroup origins. 
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row" style="margin-top: 20px;">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="animate-box">
+						<h3>Process</h3>
+						<p>
+							To learn more about the process of creating this project (and my thoughts at the time), check out my blog <a href="https://ishanvyashawkenprojects2022.blogspot.com/" target="_blank">here</a>.
 						</p>
 
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 20px;">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="animate-box">
+						<h3>Acknowledgements</h3>
+						<p>
+							Thank you to Rick Tate and John Urwin for the mentorship.
+						</p>
 					</div>
 				</div>
 			</div>
