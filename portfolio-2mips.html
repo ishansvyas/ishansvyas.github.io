@@ -101,56 +101,53 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>100 MHz CPU in Verilog</h2>
-					<p>A custom MIPS processor implementation <a href="https://github.com/ishansvyas/mips-pipelined-cpu" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
+					<p>Using logic gates to design a fully-functional, near-modern CPU <a href="https://github.com/ishansvyas/mips-pipelined-cpu" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="col-md-12">
-					<img src="images/myown/mips_cpu.jpg" class="img-responsive" style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; display: block;">
-					<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;">Figure 1: Block diagram of the MIPS processor showing major components and data paths.</p>
-				</div>
-			</div>
-
+		
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
 						<h3>Project Overview</h3>
-						<p>This project involved designing and implementing a fully functional MIPS processor in Verilog, capable of running at 100 MHz. The processor features a 5-stage pipeline, hazard detection, and forwarding units. It was implemented on an FPGA and successfully ran various test programs, demonstrating the ability to execute complex instructions and handle data hazards efficiently.</p>
+						<p> 
+							Computers work by executing a series of 'instructions'; the set of instructions that a computer can run is called the Instruction Set Architecture (ISA). All programming languages inevitably get translated down to a series of instructions in this ISA, so that the computer can execute the program. But how does the computer execute each instruction in the ISA? That is what I learned in this project, by designing and implementing a computer that implements a simple ISA. Because of its design (i.e. pipelining), it is able to run at speeds only 1 order of magnitude off of modern computers.
+						</p>
+						<p> 
+							This CPU was made during the Digital Systems course at Duke University. It is a fully functioning 5 stage, pipelined, bypassed, hazard handling MIPS CPU. It was designed using Structural Verilog; hardware tests were written in Behavioral Verilog and software tests in the ISA. Its instruction set can be seen below.
+						</p>
+						<img src="images/myown/mips_isa.png" class="img-responsive" style="margin-bottom: 15px; max-width: 80%; display: block; margin-left: auto; margin-right: auto;">
+						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">MIPS ISA.</p>
+
 					</div>
 				</div>
 			</div>
 
+		
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<img src="images/myown/mips_pipeline.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 2: Detailed view of the 5-stage pipeline architecture with hazard detection and forwarding paths.</p>
-						<h3>Pipeline Architecture</h3>
-						<p>Detailed implementation of the 5-stage pipeline with hazard detection.</p>
+						<h3>Technical Information</h3>
+						<p>The CPU is a 32-bit processor that runs at 100 MHz. Features incorporated into the design include:</p>
+						<ul>
+							<li>5-stage Pipeline</li>
+							<li>Memory Bypassing</li>
+							<li>Hazard Handling</li>
+							<li>Carry Lookahead Addition/Subtraction</li>
+							<li>Modified Booth Multiplier</li>
+							<li>Non-Restoring Division</li>
+						</ul>
+						<p> Below is a diagram I made while creating the CPU to show an outline of the datapath, not including the implementation and control of each component. It's also not 100% reflective of the final design, but relatively close.</p>
+						<img src="images/myown/mips_cpu.jpg" class="img-responsive" style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; display: block;">
+						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;"> Block diagram of the MIPS processor showing major components and data paths.</p>
+
 					</div>
 				</div>
 			</div>
 
-			<div class="row" style="margin-top: 20px;">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="animate-box">
-						<img src="images/myown/mips_testing.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 3: Waveform simulation showing instruction execution and pipeline behavior during program execution.</p>
-						<h3>Testing & Verification</h3>
-						<p>Comprehensive test suite and verification of processor functionality.</p>
-					</div>
-				</div>
-			</div>
+		
 
-			<div class="row" style="margin-top: 20px;">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="animate-box">
-						<h3>Technical Details</h3>
-						<p>The processor was implemented using Verilog HDL and synthesized for a Xilinx FPGA. Key features include a 32-bit architecture, support for the MIPS instruction set, branch prediction, and memory management. The design was verified using both simulation and hardware testing, achieving the target clock frequency of 100 MHz while maintaining correct operation.</p>
-					</div>
-				</div>
-			</div>
+	
 		</div>
 	</div>
 

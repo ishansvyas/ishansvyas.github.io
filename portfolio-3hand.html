@@ -59,6 +59,11 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+	<script>
+		// Set the worker source to a local copy
+		pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.min.js';
+	</script>
 
 	</head>
 	<body>
@@ -104,19 +109,20 @@
 					<p>A bionic hand controlled by muscle signals <a href="https://github.com/ishansvyas/myoelectric-prosthetic-hand" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
 				</div>
 			</div>
-			
-			<div class="row">
-				<div class="col-md-12">
-					<img src="images/myown/ironman.jpg" class="img-responsive" style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; display: block;">
-					<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;">Figure 1: The completed prosthetic hand showing its mechanical structure and electronic components.</p>
-				</div>
-			</div>
-
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
 						<h3>Project Overview</h3>
-						<p>This project involved designing and building a myoelectric prosthetic hand that can be controlled using muscle signals from the user's residual limb. The hand features individual finger control, multiple grip patterns, and force feedback. The system uses surface EMG sensors to detect muscle activity and translates these signals into precise hand movements.</p>
+						<p>
+							Your brain uses electrical impulses to control your muscles. By attaching probes on your skin very close to your muscles, faint electrical signals can be picked up. We took those signals, amplified them, sent them into a computer made from scratch (<a href="portfolio-2mips.html">see my MIPS CPU here</a>), cleaned up the signal, analyzed it, and used the result to drive a motor controlling a separate 'Iron Man' hand. 							
+						</p>
+						<p>
+							More specifically, we used commercially available surface electromyography (sEMG) probes; created an Op-Amp circuit with differential amplification and a net gain of 1000; configured an ADC to interface with the CPU; wrote signal filtering, signal time-averaging, and servo control algorithms in MIPS assembly language; and constructed a 'prosthetic hand' fitted with a servo motor to control finger movement. 
+						</p>	
+					</div>
+					<div class="animate-box">
+						<img src="images/myown/ironman2.png" class="img-responsive" style="width: 80%; max-width: 600px; margin: 0 auto 20px auto; display: block">
+						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;">A photo of our prosthetic hand setup.</p>
 					</div>
 				</div>
 			</div>
@@ -124,33 +130,47 @@
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<img src="images/myown/hand_mechanics.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 2: Exploded view of the hand's mechanical components showing the tendon-driven finger actuation system.</p>
-						<h3>Mechanical Design</h3>
-						<p>Custom 3D-printed components and tendon-driven actuation system.</p>
+						<h3>Background</h3>
+						<p>
+							Myoelectric prosthesis is an extensively explored area of research; a key difficulty in this project was in interfacing and configuring existing algorithms in assembly to work on a from-scratch CPU. We used 
+							<a href="https://www.delsys.com/downloads/TUTORIAL/semg-detection-and-recording.pdf" target="_blank">this report</a>
+							from the company Delsys as a background on surface electromyography and EMG signal processing. 
+						</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
-					<div class="animate-box">
-						<img src="images/myown/hand_electronics.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 3: Circuit diagram and PCB layout of the control system showing EMG signal processing and motor control components.</p>
-						<h3>Control System</h3>
-						<p>EMG signal processing and motor control implementation.</p>
+				  <div class="animate-box">
+					<h3>Technical Report</h3>
+					<div id="pdf-container" style="position: relative;">
+						<canvas id="pdf-canvas" style="width: 100%; border: 1px solid #ccc;"></canvas>
+						<div id="pdf-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Loading PDF...</div>
 					</div>
+				  </div>
 				</div>
 			</div>
-
-			<div class="row" style="margin-top: 20px;">
+						  
+			<!-- <div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
 						<h3>Technical Details</h3>
 						<p>The prosthetic hand was built using a combination of 3D printing, custom electronics, and machine learning. The system uses EMG sensors to detect muscle activity, processes these signals using a microcontroller, and controls servo motors to actuate the fingers. The design includes force sensors for grip strength feedback and a modular architecture that allows for easy maintenance and upgrades.</p>
 					</div>
 				</div>
+			</div> -->
+			<div class="row" style="margin-top: 20px;">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="animate-box">
+						<h3>Acknowledgements</h3>
+						<p>
+							I worked with Ayush Botke to complete the project.
+						</p>
+					</div>
+				</div>
 			</div>
+
 		</div>
 	</div>
 
@@ -172,7 +192,54 @@
 	<script src="js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
-
+	<!-- PDF.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+	<script>
+		const url = 'docs/ECE_350_MPH_Report.pdf';
+		const canvas = document.getElementById('pdf-canvas');
+		const loadingDiv = document.getElementById('pdf-loading');
+		
+		// Show loading state
+		loadingDiv.style.display = 'block';
+		
+		// Load the PDF
+		pdfjsLib.getDocument({
+			url: url,
+			// Add these options to help with large files
+			disableStream: true,
+			disableAutoFetch: true
+		}).promise.then(function(pdf) {
+			console.log('PDF loaded successfully');
+			// Hide loading state
+			loadingDiv.style.display = 'none';
+			
+			// Get the first page
+			return pdf.getPage(1);
+		}).then(function(page) {
+			console.log('Page loaded successfully');
+			const scale = 1.5;
+			const viewport = page.getViewport({ scale });
+	  
+			// Set canvas dimensions
+			canvas.height = viewport.height;
+			canvas.width = viewport.width;
+	  
+			// Render PDF page into canvas context
+			const context = canvas.getContext('2d');
+			const renderContext = {
+				canvasContext: context,
+				viewport: viewport
+			};
+			
+			return page.render(renderContext).promise;
+		}).catch(function(error) {
+			// Handle errors
+			console.error('Error loading PDF:', error);
+			loadingDiv.textContent = 'Error loading PDF: ' + error.message;
+			loadingDiv.style.color = 'red';
+		});
+	</script>
+	  
 	</body>
 </html>
 
