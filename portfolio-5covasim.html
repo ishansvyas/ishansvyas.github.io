@@ -91,23 +91,25 @@
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>COVID-19 Simulation</h2>
-					<p>Agent-based modeling for disease spread prediction <a href="https://github.com/ishansvyas/covasimplify" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
+					<h2>CovaSimplify: An Agent-Based Epidemic Model Accelerator</h2>
+					<p>Accelerating Epidemic Simulation using Custom Hardware <a href="https://github.com/ishansvyas/covasimplify" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
 				</div>
 			</div>
 			
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-md-12">
 					<img src="images/myown/covasim.jpg" class="img-responsive" style="width: 100%; max-width: 800px; margin: 0 auto 20px auto; display: block;">
 					<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;">Figure 1: Visualization of disease spread in a simulated population with different intervention strategies.</p>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
 						<h3>Project Overview</h3>
-						<p>This project involved developing an agent-based simulation model to study the spread of COVID-19 and evaluate the effectiveness of various intervention strategies. The model incorporated real-world demographic data, contact networks, and disease transmission parameters to create realistic scenarios. The simulation helped in understanding how different public health measures could impact the course of the pandemic.</p>
+						<p>
+							During disease outbreaks, people like policymakers or hospital staff need to know when a disease is likely to exponentially increase in frequency. Simulations and models can offer a glimpse into when they might occur, but there are different types of models, each with their own benefits and drawbacks. A specific type of model, called an <b>Agent-Based Model</b>, is particularly accurate and easy to use, but is computationally intense. For that reason, we converted a popular Agent-Based Epidemic Model into a hardware accelerator called CovaSimplify. 
+						</p>
 					</div>
 				</div>
 			</div>
@@ -115,10 +117,20 @@
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<img src="images/myown/covasim_network.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 2: Contact network visualization showing different types of interactions between agents in the simulation.</p>
-						<h3>Network Modeling</h3>
-						<p>Implementation of realistic contact networks and social interaction patterns.</p>
+						<!-- <img src="images/myown/covasim_network.jpg" class="img-responsive" style="margin-bottom: 15px;">
+						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 2: Contact network visualization showing different types of interactions between agents in the simulation.</p> -->
+						<h3>Skills Developed</h3>
+						<b>Profiling & Testing:</b> cProfile
+						<br>
+						<b>Accelerator Design Concepts:</b> Stream Processing, Parallelism
+						<br>
+						<b>Hardware Languages:</b> <a href="https://composer-team.github.io/" target="_blank">Beethoven</a>, Chisel, Verilog
+						<br>
+						<b>Software Languages:</b> Scala, C, Python
+						<br>
+						<b>Simulation:</b> Beethoven VCS Toolchain & DRAM Simulator, GTKWave
+						<br>
+						<b>FPGA Implementation:</b> Amazon AW2 EC2, Amazon F2 Instances, Synthesis, Timing Analysis
 					</div>
 				</div>
 			</div>
@@ -126,10 +138,13 @@
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<img src="images/myown/covasim_results.jpg" class="img-responsive" style="margin-bottom: 15px;">
-						<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 3: Simulation results showing the impact of different intervention strategies on disease spread over time.</p>
-						<h3>Results Analysis</h3>
-						<p>Analysis of simulation outcomes and comparison of intervention effectiveness.</p>
+						<h3>Technical Report</h3>
+						<iframe 
+							src="docs/ECE_557_Final_Report.pdf" 
+							width="100%" 
+							height="800px" 
+							loading="lazy">
+						</iframe>
 					</div>
 				</div>
 			</div>
@@ -137,8 +152,10 @@
 			<div class="row" style="margin-top: 20px;">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="animate-box">
-						<h3>Technical Details</h3>
-						<p>The simulation was built using Python with NumPy and NetworkX for network modeling, and Matplotlib for visualization. The model incorporated various parameters including transmission rates, incubation periods, and recovery times based on published research. The system was designed to be modular, allowing for easy modification of parameters and addition of new intervention strategies.</p>
+						<h3>Acknowledgements</h3>
+						<p> 
+							I worked with Carson Brantley to complete the project. 
+						</p>
 					</div>
 				</div>
 			</div>
