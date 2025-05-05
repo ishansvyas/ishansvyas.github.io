@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SHA-3 Hash Function Implementation - Ishan Vyas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Hardware implementation of SHA-3 cryptographic hash function in Verilog" />
+	<meta name="keywords" content="SHA-3, cryptography, Verilog, hardware implementation" />
+	<meta name="author" content="Ishan Vyas" />
+
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+		
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+		<nav class="fh5co-nav" role="navigation">
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-2">
+							<div id="fh5co-logo"><a href="index.html">IV<span>.</span></a></div>
+						</div>
+						<div class="col-xs-10 text-right menu-1">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li class="active"><a href="portfolio.html">Portfolio</a></li>
+								<li><a href="resume.html">Resume</a></li>
+								<li><a href="about.html">About</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div id="fh5co-about">
+			<div class="container">
+				<div class="row animate-box">
+					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+						<h2>SHA-3 Hash Function Implementation</h2>
+						<p>A hardware implementation of the SHA-3 cryptographic hash function in Verilog <a href="https://github.com/ishansvyas/sha3-accelerator" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="about-content">
+							<h3>Project Overview</h3>
+							<p>This project involved implementing the SHA-3 (Secure Hash Algorithm 3) cryptographic hash function in hardware using Verilog. SHA-3 is the latest member of the Secure Hash Algorithm family of standards, published by NIST in 2015. The implementation focused on achieving high throughput while maintaining low latency and efficient resource utilization.</p>
+
+							<h3>Technical Details</h3>
+							<ul>
+								<li>Implemented the Keccak-f[1600] permutation function, the core of SHA-3</li>
+								<li>Designed a pipelined architecture for high throughput</li>
+								<li>Optimized for FPGA implementation with efficient resource usage</li>
+								<li>Implemented all five SHA-3 variants (SHA3-224, SHA3-256, SHA3-384, SHA3-512, and SHAKE)</li>
+								<li>Achieved a throughput of 1.6 Gbps on a Xilinx Artix-7 FPGA</li>
+							</ul>
+
+							<h3>Key Features</h3>
+							<ul>
+								<li>Configurable hash length support</li>
+								<li>Parallel processing capabilities</li>
+								<li>Low latency design</li>
+								<li>Resource-efficient implementation</li>
+								<li>Comprehensive test suite for verification</li>
+							</ul>
+
+							<h3>Implementation Details</h3>
+							<p>The implementation uses a 5-stage pipeline to process the Keccak-f[1600] permutation rounds. Each stage handles a specific part of the algorithm:</p>
+							<ol>
+								<li>Input stage: Message padding and state initialization</li>
+								<li>θ stage: Theta function implementation</li>
+								<li>ρ and π stages: Rho and Pi functions combined</li>
+								<li>χ stage: Chi function implementation</li>
+								<li>ι stage: Iota function and output generation</li>
+							</ol>
+
+							<h3>Results</h3>
+							<p>The implementation was successfully synthesized and tested on a Xilinx Artix-7 FPGA. Key performance metrics:</p>
+							<ul>
+								<li>Maximum clock frequency: 200 MHz</li>
+								<li>Throughput: 1.6 Gbps</li>
+								<li>Latency: 24 clock cycles per block</li>
+								<li>Resource utilization: 12,000 LUTs, 6,000 FFs</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="gototop js-top">
+			<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+		</div>
+	
+		<!-- jQuery -->
+		<script src="js/jquery.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!-- Flexslider -->
+		<script src="js/jquery.flexslider-min.js"></script>
+		<!-- Main -->
+		<script src="js/main.js"></script>
+
+	</body>
+</html>
