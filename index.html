@@ -38,6 +38,8 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -82,28 +84,72 @@
 		</div>
 	</nav>
 
-	<header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
+	<header id="fh5co-header" class="fh5co-cover" role="banner" style="min-height: auto; padding-top: 0;">
 		<div class="overlay"></div>
-		<div class="container">
+		<div class="container" style="padding-left: 30px;">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center">
-						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-							<h1>Hi, I'm Ishan Vyas!</h1>
-							<h2>I'm a Electrical & Computer Engineering student at Duke University.
-							</h2>
-							<h2> Here, you can <a href="portfolio.html">see my porfolio</a>, 
-								<a href="resume.html">read my resume</a>, and <a href="about.html">learn more about me</a>!</h2>
-							<h2> Keep scrolling to learn about my skills.</h2>	
+				<div class="col-md-12">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn" style="line-height: 1.2; text-align: left; margin-top: 0; padding-top: 50px;">
+							<h1 style="margin-bottom: 10px; margin-top: 0;"><b>Hi, I'm Ishan Vyas!</b></h1>
+							<h2 style="margin-bottom: 2px;">I'm an Electrical & Computer Engineering student at Duke University.</h2>
+							<h2 style="margin-bottom: 2px;">Here, you can:</h2>
+							<ul style="list-style-type: none; padding: 0; margin: 0;">
+								<li style="margin-bottom: 2px;"><h2 style="margin: 0; line-height: 1.5;"><a href="portfolio.html">See my <b>portfolio</b></a></h2></li>
+								<li style="margin-bottom: 2px;"><h2 style="margin: 0; line-height: 1.5;"><a href="resume.html">Read my <b>resume</b></a></h2></li>
+								<li style="margin-bottom: 2px;"><h2 style="margin: 0; line-height: 1.5;"><a href="about.html">Learn more <b>about me</b></a></h2></li>
+							</ul>
+
+							<div style="margin-top: 20px;">
+								<a href="mailto:ishan.vyas@duke.edu" style="margin-right: 15px;"><i class="fas fa-envelope" style="font-size: 24px;"></i></a>
+								<a href="https://www.linkedin.com/in/ishan-s-vyas4/" target="_blank" style="margin-right: 15px;"><i class="fab fa-linkedin" style="font-size: 24px;"></i></a>
+								<a href="https://github.com/ishansvyas" target="_blank"><i class="fab fa-github" style="font-size: 24px;"></i></a>
+							</div>
+
+							<div style="margin-top: 15px;">
+								<label for="linkColor" style="margin-right: 10px;">Click to Change the Site Color!</label>
+								<input type="color" id="linkColor" value="#2c98f0" onchange="changeLinkColor(this.value)">
+							</div>
+							
 
 	<!--BUTTON SAMPLE CODE		<p><a class="btn btn-primary btn-lg btn-demo" href="#"></i> View Demo</a> <a class="btn btn-primary btn-lg btn-learn">Learn More</a></p>
 	-->					</div>
 				</div>
 			</div>
+			
 		</div>
 	</header>
 
+	<script>
+		function changeLinkColor(color) {
+			// Change color of the period in the IV. heading
+			const periodSpan = document.querySelector('#fh5co-logo a span');
+			if (periodSpan) {
+				periodSpan.style.color = color;
+			}
+			
+			// Change color of main content links (portfolio, resume, about)
+			const mainLinks = document.querySelectorAll('.display-tc a');
+			mainLinks.forEach(link => {
+				link.style.color = color;
+				link.style.textDecorationColor = color;
+			});
+			
+			// Store the color in localStorage to persist across page refreshes
+			localStorage.setItem('linkColor', color);
+		}
+
+		// Apply saved color on page load
+		window.onload = function() {
+			const savedColor = localStorage.getItem('linkColor');
+			if (savedColor) {
+				document.getElementById('linkColor').value = savedColor;
+				changeLinkColor(savedColor);
+			}
+		}
+	</script>
+
 	<div id="fh5co-wireframe">
-		<div class="container">
+		<div class="container" style="padding-left: 30px;">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 <!--BEFORE					<h2>Wireframe Connects the Underlying Conceptual Structure</h2>-->

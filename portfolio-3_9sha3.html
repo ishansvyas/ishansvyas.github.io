@@ -64,60 +64,63 @@
 			<div class="container">
 				<div class="row animate-box">
 					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-						<h2>SHA-3 Hash Function Implementation</h2>
-						<p>A hardware implementation of the SHA-3 cryptographic hash function in Verilog <a href="https://github.com/ishansvyas/sha3-accelerator" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
+						<h2>SHA-3 Hash Function Accelerator</h2>
+						<p>A hardware implementation of the SHA-3 cryptographic hash function in Chisel HDL<a href="https://github.com/ishansvyas/sha3-accelerator" target="_blank" style="color: #333; text-decoration: none;"><i class="fab fa-github" style="font-size: 24px; margin-left: 10px;"></i></a></p>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="about-content">
+				<div class="row" style="margin-top: 10px;">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="animate-box">
 							<h3>Project Overview</h3>
-							<p>This project involved implementing the SHA-3 (Secure Hash Algorithm 3) cryptographic hash function in hardware using Verilog. SHA-3 is the latest member of the Secure Hash Algorithm family of standards, published by NIST in 2015. The implementation focused on achieving high throughput while maintaining low latency and efficient resource utilization.</p>
-
-							<h3>Technical Details</h3>
-							<ul>
-								<li>Implemented the Keccak-f[1600] permutation function, the core of SHA-3</li>
-								<li>Designed a pipelined architecture for high throughput</li>
-								<li>Optimized for FPGA implementation with efficient resource usage</li>
-								<li>Implemented all five SHA-3 variants (SHA3-224, SHA3-256, SHA3-384, SHA3-512, and SHAKE)</li>
-								<li>Achieved a throughput of 1.6 Gbps on a Xilinx Artix-7 FPGA</li>
-							</ul>
-
-							<h3>Key Features</h3>
-							<ul>
-								<li>Configurable hash length support</li>
-								<li>Parallel processing capabilities</li>
-								<li>Low latency design</li>
-								<li>Resource-efficient implementation</li>
-								<li>Comprehensive test suite for verification</li>
-							</ul>
-
-							<h3>Implementation Details</h3>
-							<p>The implementation uses a 5-stage pipeline to process the Keccak-f[1600] permutation rounds. Each stage handles a specific part of the algorithm:</p>
-							<ol>
-								<li>Input stage: Message padding and state initialization</li>
-								<li>θ stage: Theta function implementation</li>
-								<li>ρ and π stages: Rho and Pi functions combined</li>
-								<li>χ stage: Chi function implementation</li>
-								<li>ι stage: Iota function and output generation</li>
-							</ol>
-
-							<h3>Results</h3>
-							<p>The implementation was successfully synthesized and tested on a Xilinx Artix-7 FPGA. Key performance metrics:</p>
-							<ul>
-								<li>Maximum clock frequency: 200 MHz</li>
-								<li>Throughput: 1.6 Gbps</li>
-								<li>Latency: 24 clock cycles per block</li>
-								<li>Resource utilization: 12,000 LUTs, 6,000 FFs</li>
-							</ul>
+							<p>
+								The SHA3 accelerator project is a hardware implementation of the Keccak-256 cryptographic hash function, designed using Chisel. This design processes a single 1088-bit message chunk and produces a secure hash using the Keccak permutation, which operates on a 1600-bit internal state. The accelerator is built in a modular fashion, with separate hardware blocks for the key permutation steps: Theta, RhoPi, and Chi. Each module is individually tested to ensure correctness, and the complete design connects these modules into a single-cycle datapath, managed by a control state machine. The control logic handles input loading, tracks permutation rounds, and coordinates the hashing process using a ready-valid protocol. The accelerator is verified against a provided C reference implementation, with simulation and debugging supported by industry-standard tools such as VCS and GTKWave. This project focuses on correctness and clear structure, providing a foundation for further optimizations and more advanced hardware features in future work.
+							</p>
+						</div>
+					</div>
+				</div>	
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="animate-box">
+							<h3>Background</h3>
+							<h4>SHA-3 and Keccak</h4>
+							<p>
+								SHA3 is a family of cryptographic hash functions designed to securely turn any amount of input data into a fixed-size output, called a hash. It is used to check data integrity and for security in digital systems. SHA3 is based on the Keccak algorithm, which was selected as the winner of a competition held by NIST (the National Institute of Standards and Technology) in 2012. Keccak uses a special "sponge" construction: it absorbs input data into a large internal state, repeatedly mixes the state using a series of bitwise operations (like XORs, rotations, and permutations), and then squeezes out the final hash value. This process makes it very hard to reverse the hash or find two different inputs with the same hash, which is important for security. Keccak is the core algorithm behind SHA3, and together they provide a secure way to create digital fingerprints of data.
+							</p>
+							<h4>Why Accelerate?</h4>
+							<p>
+								Simply, SHA3 does a lot of repetitive and tricky bit-level work, which can be slow for a regular computer to do over and over. If we build a special hardware circuit just for SHA3, it can do these jobs much faster. This means we can get results quicker, use less energy, and let the main computer focus on other tasks. 
+							</p>
+						</div>
+					</div>
+				</div>	
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="animate-box">
+							<!-- <img src="images/myown/covasim_network.jpg" class="img-responsive" style="margin-bottom: 15px;">
+							<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 15px;">Figure 2: Contact network visualization showing different types of interactions between agents in the simulation.</p> -->
+							<h3>Skills Developed</h3>
+							<b>Accelerator Design Concepts:</b> Parallelism
+							<br>
+							<b>Hardware Languages:</b> <a href="https://composer-team.github.io/" target="_blank">Beethoven</a>, Chisel
+							<br>
+							<b>Software Languages:</b> C
+							<br>
+							<b>Simulation:</b> VCS, GTKWave
+							<br>
+							<b>FPGA Implementation:</b> Amazon AW2 EC2, Amazon F2 Instances
+							<img src="images/myown/sha3_keccak.jpg" class="img-responsive" style="width: 80%; max-width: 600px; margin: 0 auto 20px auto; display: block;">
+							<p class="text-center" style="color: #666; font-style: italic; margin-bottom: 30px;">SHA-3 Keccak Block Diagram</p>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 
 		<div class="gototop js-top">
-			<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+			<a href="#top" class="js-gotop">
+				<img src="images/myown/curved-white-arrow-png-0.png" alt="Go to Top" style="margin-top: 9px; width: 30px; height: 30px;">
+			</a>
 		</div>
 	
 		<!-- jQuery -->
