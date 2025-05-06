@@ -90,6 +90,9 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-nav .top-menu {
   padding: 28px 0;
 }
+.fh5co-nav .top-menu .container {
+  padding-left: 30px;
+}
 .fh5co-nav #fh5co-logo {
   font-size: 32px;
   margin: 0;
@@ -1482,6 +1485,10 @@ input[type="text"] {
 
 .js .animate-box {
   opacity: 0;
+}
+
+.fh5co-nav .col-xs-2 {
+    padding-left: 30px;
 }
 
 /*# sourceMappingURL=style.css.map */
