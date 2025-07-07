@@ -99,207 +99,22 @@
 	<div id="fh5co-about">
 		<div class="container">
 			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading" style="margin-bottom: 60px;">
-					<!-- can adjust margin using line above: <style="margin-bottom: Npx;"-->
-					<h2>About Me</h2>
-					<p>Still need to write - sorry for the delay!</p>
-				</div>
-				<div class="col-md-8 col-md-offset-2 fh5co-heading">
-					
-					<!-- <p>  put some interesting non-technical stuff here. maybe add a picture. </p> -->
-				</div>
-			</div>
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<!-- <h3>Sports</h3>
-					<p>Real Madrid, Cavs, Browns, Guardians, Columbus Crew, All Duke Sports</p> -->
-				</div>
-			</div>
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<!-- <h3>International Relations</h3>
-					<p><a href="https://www.dukedira.org/borderless.html" target="_blank">Borderless</a> Spring 2023, Fall 2023 (AI), Spring 2024</p> -->
-
+    			<div class="col-md-8 col-md-offset-2 fh5co-heading" style="margin-bottom: 60px;">
+        			<div class="row" style="display: flex; align-items: center; text-align: left;">
+            			<div class="col-sm-4 text-center">
+                			<img src="images/myown/img_w_gb.jpg" alt="Ishan Vyas" class="img-responsive" style="border-radius: 50%; width: 200px; height: 200px; margin: 0 auto;">
+            			</div>
+            			<div class="col-sm-8">
+                			<h2>About Me </h2>
+                			<p>I was born in Richmond, VA, and raised in Cleveland, OH. 
+								In my free time, I enjoy watching sports; I'm a big fan of the Cavs and Real Madrid (and Duke of course). 
+								I love to travel, and I've been able to visit many fascinating places like Laos and Chile. 
+								I've written multiple pieces on international relations, many of which can be found in Duke's Magazine <a rel="noopener noreferrer" href="https://www.dukedira.org/borderless.html" target="_blank">Borderless</a>.  
+							</p>
+            			</div>
+					</div>
 				</div>
 			</div>
-			<!-- Travel Map Section -->
-			<!-- <div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h3>Travelling</h3>
-					<p>say something about each place, what I learned, and how it affects me or smtg like that</p>
-				</div>
-				<div class="col-md-10 col-md-offset-1">
-					<div id="travel-map"></div>
-				</div>
-			</div>
-			
-		</div>
-	</div> -->
-
-	<!-- Leaflet JS -->
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-		crossorigin=""></script>
-
-	<!-- <script>
-		// Initialize the map
-		const map = L.map('travel-map').setView([20, 0], 2);
-
-		// Add the OpenStreetMap tiles
-		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 19,
-			attribution: '© OpenStreetMap contributors'
-		}).addTo(map);
-
-		// Example locations - you can modify these coordinates and add more
-		const locations = [
-			{
-				lat: 35.6762,
-				lng: 139.6503,
-				title: "Japan",
-				description: "Coming soon!"
-			},
-			{
-				lat: 38.7223,
-				lng: -9.1393,
-				title: "Portugal",
-				description: "Planned for 2025"
-			},
-			{
-				lat: 25.0343,
-				lng: -77.3963,
-				title: "Bahamas",
-				description: "Planned for 2025"
-			},
-			{
-				lat: 18.4655,
-				lng: -66.1057,
-				title: "Puerto Rico",
-				description: "Visited in 2024"
-			},
-			{
-				lat: 45.8150,
-				lng: 15.9819,
-				title: "Croatia",
-				description: "Visited in 2023"
-			},
-			{
-				lat: 48.2082,
-				lng: 16.3738,
-				title: "Austria",
-				description: "Visited in 2023"
-			},
-			{
-				lat: 52.5200,
-				lng: 13.4050,
-				title: "Germany",
-				description: "Visited in 2023"
-			},
-			{
-				lat: 59.9139,
-				lng: 10.7522,
-				title: "Norway",
-				description: "Visited in 2023"
-			},
-			{
-				lat: 51.5074,
-				lng: -0.1278,
-				title: "England",
-				description: "Visited in 2022 and 2019"
-			},
-			{
-				lat: 40.4168,
-				lng: -3.7038,
-				title: "Spain",
-				description: "Visited in 2022"
-			},
-			{
-				lat: 17.1899,
-				lng: -88.4976,
-				title: "Belize",
-				description: "Visited in 2022"
-			},
-			{
-				lat: 48.8566,
-				lng: 2.3522,
-				title: "France",
-				description: "Visited in 2018"
-			},
-			{
-				lat: 52.3676,
-				lng: 4.9041,
-				title: "Netherlands",
-				description: "Visited in 2018"
-			},
-			{
-				lat: -33.4489,
-				lng: -70.6693,
-				title: "Chile",
-				description: "Visited in 2018"
-			},
-			{
-				lat: -27.1127,
-				lng: -109.3497,
-				title: "Easter Island",
-				description: "Visited in 2018"
-			},
-			{
-				lat: 13.7563,
-				lng: 100.5018,
-				title: "Thailand",
-				description: "Visited in 2017"
-			},
-			{
-				lat: 11.5564,
-				lng: 104.9282,
-				title: "Cambodia",
-				description: "Visited in 2017"
-			},
-			{
-				lat: 10.8231,
-				lng: 106.6297,
-				title: "Vietnam",
-				description: "Visited in 2017"
-			},
-			{
-				lat: 17.9757,
-				lng: 102.6331,
-				title: "Laos",
-				description: "Visited in 2017"
-			},
-			{
-				lat: 19.4326,
-				lng: -99.1332,
-				title: "Mexico",
-				description: "Visited in 2016"
-			},
-			{
-				lat: 41.9028,
-				lng: 12.4964,
-				title: "Italy",
-				description: "Visited in 2015"
-			},
-			{
-				lat: 28.6139,
-				lng: 77.2090,
-				title: "India",
-				description: "Visited in 2013"
-			}
-		];
-
-		// Add markers for each location
-		locations.forEach(location => {
-			L.marker([location.lat, location.lng])
-				.bindPopup(`<b>${location.title}</b><br>${location.description}`)
-				.addTo(map);
-		});
-	</script> -->
-
-	<!--  FOOTER FRAME:
-	<footer id="fh5co-footer" role="contentinfo">
-		
-	</footer> -->
-
 	</div>
 
 	<div class="gototop js-top">
