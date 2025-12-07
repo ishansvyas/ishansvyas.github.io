@@ -1,3 +1,3 @@
 # ishansvyas.github.io
 
-still in progress unfortunately. classes have gotten the best of me. 
+Site is up and running. Direct all questions to me @ IshanSVyas4@gmail.com.
